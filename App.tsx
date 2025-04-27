@@ -11,8 +11,6 @@ import { View, Text } from 'react-native';
 import OnboardingScreen from './screens/OnboardingScreen';
 import HomeScreen from './screens/HomeScreen';
 import TransferScreen from './screens/TransferScreen';
-import BeneficiaryScreen from './screens/BeneficiaryScreen';
-import PaymentScreen from './screens/PaymentScreen';
 import AuthScreen from './screens/AuthScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import TransferHistoryScreen from './screens/TransferHistoryScreen';
@@ -20,20 +18,6 @@ import { supabase } from './lib/supabase';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
-
-function TransferStack() {
-  return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false
-      }}
-    >
-      <Stack.Screen name="TransferMain" component={TransferScreen} />
-      <Stack.Screen name="BeneficiaryScreen" component={BeneficiaryScreen} />
-      <Stack.Screen name="PaymentScreen" component={PaymentScreen} />
-    </Stack.Navigator>
-  );
-}
 
 function TabNavigator() {
   return (
@@ -70,13 +54,12 @@ function TabNavigator() {
       />
       <Tab.Screen
         name="Transfer"
-        component={TransferStack}
+        component={TransferScreen}
         options={{
           title: 'Transfert',
           tabBarIcon: ({ color, size }) => (
             <Send size={size} color={color} />
           ),
-          headerShown: false
         }}
       />
       <Tab.Screen

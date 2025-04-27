@@ -25,7 +25,6 @@ interface Transfer {
     first_name: string;
     last_name: string;
     email: string;
-    user_id: string;
     payment_details: any;
   }>;
 }
@@ -39,13 +38,9 @@ export default function TransferHistoryScreen() {
 
   // Format name with first name capitalized and last name uppercase
   const formatName = (firstName: string = '', lastName: string = '') => {
-    // Split first name by spaces to handle multiple first names
-    const firstNames = firstName.split(' ').map(name => 
-      name.charAt(0).toUpperCase() + name.slice(1).toLowerCase()
-    ).join(' ');
-    
+    const formattedFirstName = firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
     const formattedLastName = lastName.toUpperCase();
-    return `${firstNames} ${formattedLastName}`;
+    return `${formattedFirstName} ${formattedLastName}`;
   };
 
   const fetchTransfers = async () => {
@@ -82,7 +77,6 @@ export default function TransferHistoryScreen() {
             first_name,
             last_name,
             email,
-            user_id,
             payment_details
           )
         `)
